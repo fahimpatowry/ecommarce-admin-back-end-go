@@ -1,3 +1,5 @@
+run: go run ./cmd/api
+
 commend: swag init -g cmd/api/main.go --output ./docs
 Link: http://localhost:4040/swagger/index.html
 

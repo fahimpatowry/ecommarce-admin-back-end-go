@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 	"net/http"
-	"time"
 	"os"
+	"time"
 
 	httpSwagger "github.com/swaggo/http-swagger"
 
@@ -13,9 +13,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 
 	// health "initial_project/internal/handlers/healthCheck"
-	health "initial_project/handlers"
 	carousel "initial_project/carousel"
-
+	health "initial_project/handlers"
+	"initial_project/upload"
 )
 
 type Server struct {
@@ -46,6 +46,17 @@ func (s *Server) Routes() {
 
 	// all carousel routes under /carousels
 	s.Router.Route("/carousels", carouselHandler.RegisterRoutes)
+
+	// --- REGISTER UPLOAD ROUTES ---
+	uploadService := upload.NewUploadService()
+	uploadHandler := upload.NewUploadHandler(uploadService)
+
+	// all upload routes under /carousels
+	s.Router.Route("/upload", uploadHandler.RegisterRoutes)
+
+	// Serve static files from ./public
+	fs := http.FileServer(http.Dir("./public"))
+	s.Router.Handle("/public/*", http.StripPrefix("/public", fs))
 
 	// Swagger route with dynamic URL
 	port := os.Getenv("PORT")

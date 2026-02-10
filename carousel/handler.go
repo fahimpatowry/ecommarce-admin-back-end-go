@@ -9,9 +9,9 @@ import (
 )
 
 type CarouselInput struct {
-    URL      string `json:"url" bson:"url"`
-    Slug     string `json:"slug" bson:"slug"`
-    IsActive bool   `json:"isActive" bson:"isActive"`
+	URL      string `json:"url" bson:"url"`
+	Slug     string `json:"slug" bson:"slug"`
+	IsActive bool   `json:"isActive" bson:"isActive"`
 }
 
 type Handler struct {
@@ -28,7 +28,7 @@ func NewHandler(s *Service) *Handler {
 // 	return &Handler{service: s}
 // }
 
-func (h *Handler) RegisterRoutes(r chi.Router){
+func (h *Handler) RegisterRoutes(r chi.Router) {
 	r.Get("/", h.GetAll)
 	r.Post("/", h.Create)
 	r.Put("/{id}", h.Update)
@@ -62,7 +62,7 @@ func (h *Handler) GetAll(w http.ResponseWriter, r *http.Request) {
 // @Success 201 {object} Carousel
 // @Failure 400 {string} string "Bad Request"
 // @Router /carousels [post]
-func (h *Handler) Create(w http.ResponseWriter, r *http.Request){
+func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
 	var c Carousel
 
 	if err := json.NewDecoder(r.Body).Decode(&c); err != nil {
@@ -101,7 +101,7 @@ func (h *Handler) Update(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var c Carousel
-	if err := json.NewDecoder(r.Body).Decode(&c); err != nil{
+	if err := json.NewDecoder(r.Body).Decode(&c); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}

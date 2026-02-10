@@ -148,4 +148,29 @@ paths:
       summary: Health check
       tags:
       - Health
+  /upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload an image/file and return public URL
+      parameters:
+      - description: Upload file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Upload a file
+      tags:
+      - upload
 swagger: "2.0"
