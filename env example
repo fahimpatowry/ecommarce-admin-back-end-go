@@ -1,0 +1,4 @@
+PORT=8000
+
+MONGO_URI=mongodb+srv://tecnonextfahim:123@cluster0.wr4cdml.mongodb.net/?appName=Cluster0
+MONGO_DB=testdb

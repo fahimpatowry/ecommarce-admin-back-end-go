@@ -1,0 +1,151 @@
+definitions:
+  carousel.Carousel:
+    properties:
+      Slug:
+        type: string
+      createAt:
+        type: string
+      id:
+        type: string
+      isActive:
+        type: boolean
+      updatedAt:
+        type: string
+      url:
+        type: string
+    type: object
+  carousel.CarouselInput:
+    properties:
+      isActive:
+        type: boolean
+      slug:
+        type: string
+      url:
+        type: string
+    type: object
+info:
+  contact:
+    email: fahim@example.com
+  description: REST API with Go, MongoDB, and Swagger
+  title: Initial Project API
+  version: "1.0"
+paths:
+  /carousels:
+    get:
+      description: Retrieve all carousel items
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/carousel.Carousel'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all carousels
+      tags:
+      - carousels
+    post:
+      consumes:
+      - application/json
+      description: Add a new carousel item
+      parameters:
+      - description: Carousel object
+        in: body
+        name: carousel
+        required: true
+        schema:
+          $ref: '#/definitions/carousel.CarouselInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/carousel.Carousel'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create a new carousel
+      tags:
+      - carousels
+  /carousels/{id}:
+    delete:
+      description: Delete a carousel item
+      parameters:
+      - description: Carousel ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete carousel by ID
+      tags:
+      - carousels
+    put:
+      consumes:
+      - application/json
+      description: Update an existing carousel
+      parameters:
+      - description: Carousel ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Carousel object
+        in: body
+        name: carousel
+        required: true
+        schema:
+          $ref: '#/definitions/carousel.Carousel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update carousel by ID
+      tags:
+      - carousels
+  /health:
+    get:
+      description: API health status
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Health check
+      tags:
+      - Health
+swagger: "2.0"
