@@ -23,6 +23,23 @@ definitions:
       url:
         type: string
     type: object
+  seasonalOffer.SeasonalOffer:
+    properties:
+      UpdatedAt:
+        type: string
+      createAt:
+        type: string
+      id:
+        type: string
+      isActive:
+        type: boolean
+      position:
+        type: integer
+      slug:
+        type: string
+      url:
+        type: string
+    type: object
 info:
   contact:
     email: fahim@example.com
@@ -30,6 +47,32 @@ info:
   title: Initial Project API
   version: "1.0"
 paths:
+  /SeasonalOffers:
+    post:
+      consumes:
+      - application/json
+      description: Add a new seasonalOffer item
+      parameters:
+      - description: SeasonalOffer object
+        in: body
+        name: seasonalOffer
+        required: true
+        schema:
+          $ref: '#/definitions/seasonalOffer.SeasonalOffer'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/seasonalOffer.SeasonalOffer'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create a new seasonalOffer
+      tags:
+      - seasonalOffers
   /carousels:
     get:
       description: Retrieve all carousel items
@@ -148,6 +191,86 @@ paths:
       summary: Health check
       tags:
       - Health
+  /seasonalOffers:
+    get:
+      description: Retrieve all seasonalOffer items
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/seasonalOffer.SeasonalOffer'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all seasonalOffers
+      tags:
+      - seasonalOffers
+  /seasonalOffers/{id}:
+    delete:
+      description: Delete a seasonalOffer item
+      parameters:
+      - description: SeasonalOffer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete seasonalOffer by ID
+      tags:
+      - seasonalOffers
+    put:
+      consumes:
+      - application/json
+      description: Update an existing seasonalOffer
+      parameters:
+      - description: SeasonalOffer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: SeasonalOffer object
+        in: body
+        name: seasonalOffer
+        required: true
+        schema:
+          $ref: '#/definitions/seasonalOffer.SeasonalOffer'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update seasonalOffer by ID
+      tags:
+      - seasonalOffers
   /upload:
     post:
       consumes:

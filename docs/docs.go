@@ -17,6 +17,46 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/SeasonalOffers": {
+            "post": {
+                "description": "Add a new seasonalOffer item",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "seasonalOffers"
+                ],
+                "summary": "Create a new seasonalOffer",
+                "parameters": [
+                    {
+                        "description": "SeasonalOffer object",
+                        "name": "seasonalOffer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/carousels": {
             "get": {
                 "description": "Retrieve all carousel items",
@@ -196,6 +236,127 @@ const docTemplate = `{
                 }
             }
         },
+        "/seasonalOffers": {
+            "get": {
+                "description": "Retrieve all seasonalOffer items",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "seasonalOffers"
+                ],
+                "summary": "Get all seasonalOffers",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/seasonalOffers/{id}": {
+            "put": {
+                "description": "Update an existing seasonalOffer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "seasonalOffers"
+                ],
+                "summary": "Update seasonalOffer by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "SeasonalOffer ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "SeasonalOffer object",
+                        "name": "seasonalOffer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a seasonalOffer item",
+                "tags": [
+                    "seasonalOffers"
+                ],
+                "summary": "Delete seasonalOffer by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "SeasonalOffer ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/upload": {
             "post": {
                 "description": "Upload an image/file and return public URL",
@@ -264,6 +425,32 @@ const docTemplate = `{
             "properties": {
                 "isActive": {
                     "type": "boolean"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "seasonalOffer.SeasonalOffer": {
+            "type": "object",
+            "properties": {
+                "UpdatedAt": {
+                    "type": "string"
+                },
+                "createAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "position": {
+                    "type": "integer"
                 },
                 "slug": {
                     "type": "string"
