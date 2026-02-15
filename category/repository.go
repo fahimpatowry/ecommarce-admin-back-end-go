@@ -1,4 +1,4 @@
-package carousel
+package category
 
 import (
 	"context"
@@ -14,13 +14,12 @@ type Repository struct {
 
 func NewRepository(db *mongo.Database) *Repository {
 	return &Repository{
-		collection: db.Collection("carousels"),
+		collection: db.Collection("categorys"),
 	}
 }
 
-func (r *Repository) GetAll(ctx context.Context) ([]Carousel, error) {
-
-	cursor, err := r.collection.Find(ctx, bson.M{"isActive": true})
+func (r *Repository) GetAll(ctx context.Context) ([]Category, error) {
+	cursor, err := r.collection.Find(ctx, bson.M{})
 
 	if err != nil {
 		return nil, err
@@ -28,28 +27,27 @@ func (r *Repository) GetAll(ctx context.Context) ([]Carousel, error) {
 
 	defer cursor.Close(ctx)
 
-	var carousel []Carousel
+	var category []Category
 
-	if err := cursor.All(ctx, &carousel); err != nil {
+	if err := cursor.All(ctx, &category); err != nil {
 		return nil, err
 	}
 
-	return carousel, nil
+	return category, nil
 }
 
-func (r *Repository) Create(ctx context.Context, c *Carousel) error {
+func (r *Repository) Create(ctx context.Context, c *Category) error {
 	_, err := r.collection.InsertOne(ctx, c)
 
 	return err
 }
 
-func (r *Repository) Update(ctx context.Context, id primitive.ObjectID, c *Carousel) error {
+func (r *Repository) Update(ctx context.Context, id primitive.ObjectID, c *Category) error {
 	update := bson.M{
 		"$set": bson.M{
-			"url":      c.URL,
-			"slug":     c.Slug,
-			"isActive": c.IsActive,
-			"updated":  c.UpdatedAt,
+			"url":     c.URL,
+			"slug":    c.Slug,
+			"updated": c.UpdatedAt,
 		},
 	}
 

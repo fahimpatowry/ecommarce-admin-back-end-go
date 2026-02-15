@@ -1,4 +1,4 @@
-package carousel
+package category
 
 import (
 	"time"
@@ -6,11 +6,10 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-type Carousel struct {
+type Category struct {
 	ID        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	URL       string             `bson:"url" json:"url"`
 	Slug      string             `bson:"slug" json:"slug"`
-	IsActive  bool               `bson:"isActive" json:'isActive'`
 	CreateAt  time.Time          `bson:"createAt" json:"createAt"`
 	UpdatedAt time.Time          `bson:"updatedAt" json:"updatedAt"`
 }

@@ -1,14 +1,14 @@
 definitions:
   carousel.Carousel:
     properties:
-      Slug:
-        type: string
       createAt:
         type: string
       id:
         type: string
       isActive:
         type: boolean
+      slug:
+        type: string
       updatedAt:
         type: string
       url:
@@ -18,6 +18,26 @@ definitions:
     properties:
       isActive:
         type: boolean
+      slug:
+        type: string
+      url:
+        type: string
+    type: object
+  category.Category:
+    properties:
+      createAt:
+        type: string
+      id:
+        type: string
+      slug:
+        type: string
+      updatedAt:
+        type: string
+      url:
+        type: string
+    type: object
+  category.CategoryInput:
+    properties:
       slug:
         type: string
       url:
@@ -163,6 +183,111 @@ paths:
       summary: Update carousel by ID
       tags:
       - carousels
+  /categorys:
+    get:
+      description: Retrieve all category items
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/category.Category'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all categorys
+      tags:
+      - categorys
+    post:
+      consumes:
+      - application/json
+      description: Add a new category item
+      parameters:
+      - description: Category object
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/category.CategoryInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/category.Category'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create a new category
+      tags:
+      - categorys
+  /categorys/{id}:
+    delete:
+      description: Delete a category item
+      parameters:
+      - description: category ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: No Content
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete category by ID
+      tags:
+      - categorys
+    put:
+      consumes:
+      - application/json
+      description: Update an existing category
+      parameters:
+      - description: category ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Category object
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/category.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update category by ID
+      tags:
+      - categorys
   /health:
     get:
       description: API health status
