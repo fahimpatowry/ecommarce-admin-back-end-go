@@ -16,6 +16,7 @@ import (
 	carousel "initial_project/carousel"
 	category "initial_project/category"
 	health "initial_project/handlers"
+	product "initial_project/product"
 	seasonalOffer "initial_project/seasonalOffer"
 	"initial_project/upload"
 )
@@ -57,13 +58,21 @@ func (s *Server) Routes() {
 	// all carousel routes under /seasonalOffer
 	s.Router.Route("/seasonalOffers", seasonalOfferHandler.RegisterRoutes)
 
-	// --- REGISTER SEASONAL OFFER ROUTES ---
+	// --- REGISTER CATEGORY ROUTES ---
 	categoryRepo := category.NewRepository(s.DB)
 	categoryService := category.NewService(categoryRepo)
 	categoryHandler := category.NewHandler(categoryService)
 
-	// all carousel routes under /seasonalOffer
+	// all category routes under /category
 	s.Router.Route("/categorys", categoryHandler.RegisterRoutes)
+
+	// --- REGISTER PRODUCT ROUTES ---
+	productRepo := product.NewRepository(s.DB)
+	productService := product.NewService(productRepo)
+	productHandler := product.NewHandler(productService)
+
+	// all product routes under /product
+	s.Router.Route("/products", productHandler.RegisterRoutes)
 
 	// --- REGISTER UPLOAD ROUTES ---
 	uploadService := upload.NewUploadService()

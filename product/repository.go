@@ -1,4 +1,4 @@
-package category
+package product
 
 import (
 	"context"
@@ -14,11 +14,11 @@ type Repository struct {
 
 func NewRepository(db *mongo.Database) *Repository {
 	return &Repository{
-		collection: db.Collection("categorys"),
+		collection: db.Collection("products"),
 	}
 }
 
-func (r *Repository) GetAll(ctx context.Context) ([]Category, error) {
+func (r *Repository) GetAll(ctx context.Context) ([]Product, error) {
 	cursor, err := r.collection.Find(ctx, bson.M{})
 
 	if err != nil {
@@ -27,28 +27,31 @@ func (r *Repository) GetAll(ctx context.Context) ([]Category, error) {
 
 	defer cursor.Close(ctx)
 
-	var category []Category
+	var product []Product
 
-	if err := cursor.All(ctx, &category); err != nil {
+	if err := cursor.All(ctx, &product); err != nil {
 		return nil, err
 	}
 
-	return category, nil
+	return product, nil
 }
 
-func (r *Repository) Create(ctx context.Context, c *Category) error {
+func (r *Repository) Create(ctx context.Context, c *Product) error {
 	_, err := r.collection.InsertOne(ctx, c)
 
 	return err
 }
 
-func (r *Repository) Update(ctx context.Context, id primitive.ObjectID, c *Category) error {
+func (r *Repository) Update(ctx context.Context, id primitive.ObjectID, c *Product) error {
 	update := bson.M{
 		"$set": bson.M{
-			"name":    c.Name,
-			"url":     c.URL,
-			"slug":    c.Slug,
-			"updated": c.UpdatedAt,
+			"title":      c.Title,
+			"decription": c.Decription,
+			"tag":        c.Tag,
+			"updated":    c.UpdatedAt,
+			"url":        c.URL,
+			"isPopular":  c.IsPopular,
+			"updatedAt":  c.UpdatedAt,
 		},
 	}
 
