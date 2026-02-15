@@ -40,6 +40,17 @@ definitions:
       url:
         type: string
     type: object
+  seasonalOffer.SeasonalOfferInput:
+    properties:
+      isActive:
+        type: boolean
+      position:
+        type: integer
+      slug:
+        type: string
+      url:
+        type: string
+    type: object
 info:
   contact:
     email: fahim@example.com
@@ -47,32 +58,6 @@ info:
   title: Initial Project API
   version: "1.0"
 paths:
-  /SeasonalOffers:
-    post:
-      consumes:
-      - application/json
-      description: Add a new seasonalOffer item
-      parameters:
-      - description: SeasonalOffer object
-        in: body
-        name: seasonalOffer
-        required: true
-        schema:
-          $ref: '#/definitions/seasonalOffer.SeasonalOffer'
-      produces:
-      - application/json
-      responses:
-        "201":
-          description: Created
-          schema:
-            $ref: '#/definitions/seasonalOffer.SeasonalOffer'
-        "400":
-          description: Bad Request
-          schema:
-            type: string
-      summary: Create a new seasonalOffer
-      tags:
-      - seasonalOffers
   /carousels:
     get:
       description: Retrieve all carousel items
@@ -208,6 +193,31 @@ paths:
           schema:
             type: string
       summary: Get all seasonalOffers
+      tags:
+      - seasonalOffers
+    post:
+      consumes:
+      - application/json
+      description: Add a new seasonalOffer item
+      parameters:
+      - description: SeasonalOfferInput object
+        in: body
+        name: seasonalOffer
+        required: true
+        schema:
+          $ref: '#/definitions/seasonalOffer.SeasonalOfferInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/seasonalOffer.SeasonalOffer'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create a new seasonalOffer
       tags:
       - seasonalOffers
   /seasonalOffers/{id}:

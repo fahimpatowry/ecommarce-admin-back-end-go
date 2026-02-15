@@ -17,46 +17,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/SeasonalOffers": {
-            "post": {
-                "description": "Add a new seasonalOffer item",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "seasonalOffers"
-                ],
-                "summary": "Create a new seasonalOffer",
-                "parameters": [
-                    {
-                        "description": "SeasonalOffer object",
-                        "name": "seasonalOffer",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/carousels": {
             "get": {
                 "description": "Retrieve all carousel items",
@@ -263,6 +223,44 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "Add a new seasonalOffer item",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "seasonalOffers"
+                ],
+                "summary": "Create a new seasonalOffer",
+                "parameters": [
+                    {
+                        "description": "SeasonalOfferInput object",
+                        "name": "seasonalOffer",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/seasonalOffer.SeasonalOfferInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/seasonalOffer.SeasonalOffer"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
             }
         },
         "/seasonalOffers/{id}": {
@@ -446,6 +444,23 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "position": {
+                    "type": "integer"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "seasonalOffer.SeasonalOfferInput": {
+            "type": "object",
+            "properties": {
                 "isActive": {
                     "type": "boolean"
                 },

@@ -2,6 +2,7 @@ package seasonalOffer
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -26,6 +27,7 @@ func NewHandler(s *Service) *Handler {
 }
 
 func (h *Handler) RegisterRoutes(r chi.Router) {
+	fmt.Println("calling")
 	r.Get("/", h.GetAll)
 	r.Post("/", h.Create)
 	r.Put("/{id}", h.Update)
@@ -55,10 +57,10 @@ func (h *Handler) GetAll(w http.ResponseWriter, r *http.Request) {
 // @Tags seasonalOffers
 // @Accept json
 // @Produce json
-// @Param seasonalOffer body SeasonalOffer true "SeasonalOffer object"
+// @Param seasonalOffer body SeasonalOfferInput true "SeasonalOfferInput object"
 // @Success 201 {object} SeasonalOffer
 // @Failure 400 {string} string "Bad Request"
-// @Router /SeasonalOffers [post]
+// @Router /seasonalOffers [post]
 func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
 	var c SeasonalOffer
 
