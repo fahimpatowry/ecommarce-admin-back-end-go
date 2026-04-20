@@ -21,7 +21,7 @@ func (s *Service) GetCategorys(ctx context.Context) ([]Category, error) {
 }
 
 func (s *Service) CreateCategory(ctx context.Context, c *Category) error {
-	if c.URL == "" || c.Slug == "" {
+	if c.URL == "" || c.Slug == "" || c.Slug == "" {
 		return errors.New("url and slug are required")
 	}
 

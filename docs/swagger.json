@@ -747,7 +747,7 @@
             "properties": {
                 "categoryId": {
                     "description": "FK",
-                    "type": "string"
+                    "type": "number"
                 },
                 "createAt": {
                     "type": "string"
@@ -788,7 +788,7 @@
             "properties": {
                 "categoryId": {
                     "description": "FK",
-                    "type": "string"
+                    "type": "number"
                 },
                 "createAt": {
                     "type": "string"

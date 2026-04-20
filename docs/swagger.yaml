@@ -27,7 +27,7 @@ definitions:
     properties:
       categoryId:
         description: FK
-        type: string
+        type: number
       createAt:
         type: string
       id:
@@ -54,7 +54,7 @@ definitions:
     properties:
       categoryId:
         description: FK
-        type: string
+        type: number
       createAt:
         type: string
       description:

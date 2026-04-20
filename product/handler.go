@@ -16,6 +16,7 @@ type ProductInput struct {
 	Discount   float64  `bson:"discount" json:"discount"`
 	Tag        string   `bson:"tag" json:"tag"`
 	IsPopular  bool     `bson:"isPopular" json:"isPopular"`
+	CategoryID float64  `bson:"categoryId" json:"categoryId"`
 }
 
 type Handler struct {

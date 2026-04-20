@@ -2,6 +2,7 @@ package category
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -12,6 +13,7 @@ type CategoryInput struct {
 	Name string `bson:"name" json:"name"`
 	URL  string `bson:"url" json:"url"`
 	Slug string `bson:"slug" json:"slug"`
+	// CategoryID float64 `bson:"categoryId" json:"categoryId"`
 }
 
 type Handler struct {
@@ -65,6 +67,23 @@ func (h *Handler) Create(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
+
+	categorys, err := h.service.GetCategorys(r.Context())
+
+	fmt.Printf("total length: %+v\n", len(categorys))
+	fmt.Printf("err: %+v\n", err != nil)
+
+	newCategoryID := 1 // default
+
+	if err == nil && len(categorys) > 0 {
+		lastCategoryID := categorys[len(categorys)-1].CategoryID
+
+		if lastCategoryID > 0 {
+			newCategoryID = int(lastCategoryID) + 1
+
+		}
+	}
+	c.CategoryID = float64(newCategoryID)
 
 	if err := h.service.CreateCategory(r.Context(), &c); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)

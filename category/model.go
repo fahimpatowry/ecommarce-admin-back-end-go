@@ -9,7 +9,7 @@ import (
 type Category struct {
 	ID         primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Name       string             `bson:"name" json:"name"`
-	CategoryID primitive.ObjectID `bson:"categoryId" json:"categoryId"` // FK
+	CategoryID float64            `bson:"categoryId" json:"categoryId"` // FK
 	URL        string             `bson:"url" json:"url"`
 	Slug       string             `bson:"slug" json:"slug"`
 	CreateAt   time.Time          `bson:"createAt" json:"createAt"`

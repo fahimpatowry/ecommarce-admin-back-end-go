@@ -755,7 +755,7 @@ const docTemplate = `{
             "properties": {
                 "categoryId": {
                     "description": "FK",
-                    "type": "string"
+                    "type": "number"
                 },
                 "createAt": {
                     "type": "string"
@@ -796,7 +796,7 @@ const docTemplate = `{
             "properties": {
                 "categoryId": {
                     "description": "FK",
-                    "type": "string"
+                    "type": "number"
                 },
                 "createAt": {
                     "type": "string"

@@ -11,7 +11,7 @@ type Product struct {
 	URL        []string           `bson:"url" json:"url"`
 	Title      string             `bson:"title" json:"title"`
 	Decription string             `bson:"description" json:"description"`
-	CategoryID primitive.ObjectID `bson:"categoryId" json:"categoryId"` // FK
+	CategoryID float64            `bson:"categoryId" json:"categoryId"` // FK
 	Price      float64            `bson:"price" json:"price"`
 	OrderCount int                `bson:"orderCount" json:"orderCount"`
 	Discount   float64            `bson:"discount" json:"discount"`
