@@ -45,7 +45,7 @@ func (r *Repository) Create(ctx context.Context, c *Product) error {
 func (r *Repository) Update(ctx context.Context, id primitive.ObjectID, c *Product) error {
 	update := bson.M{
 		"$set": bson.M{
-			"title":      c.Title,
+			"name":       c.Name,
 			"decription": c.Decription,
 			"tag":        c.Tag,
 			"updated":    c.UpdatedAt,

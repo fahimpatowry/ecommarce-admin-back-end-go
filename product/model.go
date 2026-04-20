@@ -9,7 +9,7 @@ import (
 type Product struct {
 	ID         primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	URL        []string           `bson:"url" json:"url"`
-	Title      string             `bson:"title" json:"title"`
+	Name       string             `bson:"name" json:"name"`
 	Decription string             `bson:"description" json:"description"`
 	CategoryID float64            `bson:"categoryId" json:"categoryId"` // FK
 	Price      float64            `bson:"price" json:"price"`

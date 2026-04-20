@@ -813,6 +813,9 @@ const docTemplate = `{
                 "isPopular": {
                     "type": "boolean"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "orderCount": {
                     "type": "integer"
                 },
@@ -820,9 +823,6 @@ const docTemplate = `{
                     "type": "number"
                 },
                 "tag": {
-                    "type": "string"
-                },
-                "title": {
                     "type": "string"
                 },
                 "updatedAt": {
@@ -839,6 +839,9 @@ const docTemplate = `{
         "product.ProductInput": {
             "type": "object",
             "properties": {
+                "categoryId": {
+                    "type": "number"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -847,6 +850,9 @@ const docTemplate = `{
                 },
                 "isPopular": {
                     "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
                 },
                 "price": {
                     "type": "number"

@@ -65,13 +65,13 @@ definitions:
         type: string
       isPopular:
         type: boolean
+      name:
+        type: string
       orderCount:
         type: integer
       price:
         type: number
       tag:
-        type: string
-      title:
         type: string
       updatedAt:
         type: string
@@ -82,12 +82,16 @@ definitions:
     type: object
   product.ProductInput:
     properties:
+      categoryId:
+        type: number
       description:
         type: string
       discount:
         type: number
       isPopular:
         type: boolean
+      name:
+        type: string
       price:
         type: number
       tag:

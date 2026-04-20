@@ -10,6 +10,7 @@ import (
 
 type ProductInput struct {
 	title      string   `bson:"title" json:"title"`
+	Name       string   `bson:"name" json:"name"`
 	Decription string   `bson:"description" json:"description"`
 	URL        []string `json:"url" bson:"url"`
 	Price      float64  `bson:"price" json:"price"`

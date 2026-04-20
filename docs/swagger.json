@@ -805,6 +805,9 @@
                 "isPopular": {
                     "type": "boolean"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "orderCount": {
                     "type": "integer"
                 },
@@ -812,9 +815,6 @@
                     "type": "number"
                 },
                 "tag": {
-                    "type": "string"
-                },
-                "title": {
                     "type": "string"
                 },
                 "updatedAt": {
@@ -831,6 +831,9 @@
         "product.ProductInput": {
             "type": "object",
             "properties": {
+                "categoryId": {
+                    "type": "number"
+                },
                 "description": {
                     "type": "string"
                 },
@@ -839,6 +842,9 @@
                 },
                 "isPopular": {
                     "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
                 },
                 "price": {
                     "type": "number"
