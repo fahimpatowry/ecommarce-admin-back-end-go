@@ -15,7 +15,7 @@ type ProductInput struct {
 	URL        []string `json:"url" bson:"url"`
 	Price      float64  `bson:"price" json:"price"`
 	Discount   float64  `bson:"discount" json:"discount"`
-	Tag        string   `bson:"tag" json:"tag"`
+	Tag        []string `bson:"tag" json:"tag"`
 	IsPopular  bool     `bson:"isPopular" json:"isPopular"`
 	CategoryID float64  `bson:"categoryId" json:"categoryId"`
 }

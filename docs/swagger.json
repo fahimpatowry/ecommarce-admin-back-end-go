@@ -815,7 +815,10 @@
                     "type": "number"
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "updatedAt": {
                     "type": "string"
@@ -850,7 +853,10 @@
                     "type": "number"
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "url": {
                     "type": "array",

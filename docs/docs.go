@@ -823,7 +823,10 @@ const docTemplate = `{
                     "type": "number"
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "updatedAt": {
                     "type": "string"
@@ -858,7 +861,10 @@ const docTemplate = `{
                     "type": "number"
                 },
                 "tag": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "url": {
                     "type": "array",

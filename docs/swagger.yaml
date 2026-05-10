@@ -72,7 +72,9 @@ definitions:
       price:
         type: number
       tag:
-        type: string
+        items:
+          type: string
+        type: array
       updatedAt:
         type: string
       url:
@@ -95,7 +97,9 @@ definitions:
       price:
         type: number
       tag:
-        type: string
+        items:
+          type: string
+        type: array
       url:
         items:
           type: string
